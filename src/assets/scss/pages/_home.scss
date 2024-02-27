@@ -22,7 +22,7 @@
       @include pxRem(height, 100);
       @include pxRem(gap, 20);
       @include pxRem(padding, 10);
-      margin: auto;
+      @include pxRem(margin, 5 0 5 0);
       box-sizing: content-box;
       &.unread {
         background-color: map-get($colors, bg-gray);

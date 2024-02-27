@@ -31,6 +31,7 @@ export const Unread: Story = {
       ...mockNotification,
     },
     markAsRead: mockMarkAsRead,
+    avatarUrl: mockNotification.avatarUrl,
   },
 };
 
@@ -41,5 +42,6 @@ export const Read: Story = {
       isRead: true,
     },
     markAsRead: mockMarkAsRead,
+    avatarUrl: mockNotification.avatarUrl,
   },
 };

@@ -1,17 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Notifications from "../Notification/index";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import useNotificationListData from "../../hooks/useNotificationListData";
+import { Notification } from "../../type";
+import { getUserAvatar } from "../../API/index";
 
-const ListNotifications: React.FC = () => {
-  const {
-    notifications,
-    totalPages,
-    currentPage,
-    markAsRead,
-    handlePageChange,
-  } = useNotificationListData();
+interface ListNotificationsProps {
+  notifications: Notification[];
+  totalRecords: number;
+  currentPage: number;
+  markAsRead: (id: string) => void;
+  handlePageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
+}
+
+const ListNotifications: React.FC<ListNotificationsProps> = ({
+  notifications,
+  totalRecords,
+  currentPage,
+  markAsRead,
+  handlePageChange,
+}) => {
+  const [avatarUrls, setAvatarUrls] = useState<{
+    [key: string]: string | null;
+  }>({});
+
+  useEffect(() => {
+    const fetchAvatars = async () => {
+      const avatarPromises = notifications.map(async (notification) => {
+        try {
+          const avatarUrl = await getUserAvatar(notification.createdUserId);
+          return { [notification.id]: avatarUrl || null };
+        } catch (error) {
+          console.error("Error fetching avatar:", error);
+          return { [notification.id]: null };
+        }
+      });
+
+      const avatarResults = await Promise.all(avatarPromises);
+      const avatarMap = avatarResults.reduce(
+        (acc, cur) => ({ ...acc, ...cur }),
+        {}
+      );
+      setAvatarUrls(avatarMap);
+    };
+
+    fetchAvatars();
+  }, [notifications]);
+
+  const totalPages = Math.ceil(totalRecords / 10);
 
   return (
     <div className="notification">
@@ -22,7 +58,7 @@ const ListNotifications: React.FC = () => {
               key={notification.id}
               notification={notification}
               markAsRead={markAsRead}
-              avatarUrl={notification.avatarUrl || null}
+              avatarUrl={avatarUrls[notification.id]}
             />
           ))}
         </ul>

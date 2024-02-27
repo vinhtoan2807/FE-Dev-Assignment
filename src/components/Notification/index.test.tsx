@@ -1,32 +1,34 @@
-import { render, screen } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import Notifications from "./index";
 import { mockNotification } from "../../mocks/data/notification/notification.mocks";
 
 const mockMarkAsRead = jest.fn();
 
-describe("Notifications component", () => {
+describe("Notifications Component", () => {
   it("renders avatarUrl correctly", () => {
+    const avatarUrl = "https://example.com/avatar.jpg";
     render(
       <Notifications
         notification={mockNotification}
         markAsRead={mockMarkAsRead}
-        avatarUrl={mockNotification.avatarUrl || null}
+        avatarUrl={avatarUrl}
       />
     );
-    const avatarElement = screen.getByRole("img", { name: "notification-img" });
+    const avatarElement = screen.getByAltText("notification-avatar");
     expect(avatarElement).toBeInTheDocument();
-    expect(avatarElement).toHaveAttribute("src", mockNotification.avatarUrl);
+    expect(avatarElement).toHaveAttribute("src", avatarUrl);
   });
 
-  it("renders content correctly", () => {
+  it("calls markAsRead function when clicked", () => {
     render(
       <Notifications
         notification={mockNotification}
         markAsRead={mockMarkAsRead}
-        avatarUrl={mockNotification.avatarUrl || null}
+        avatarUrl={null}
       />
     );
-    const contentElement = screen.getByText("Project Name");
-    expect(contentElement).toBeInTheDocument();
+    const notificationItem = screen.getByTestId("notification-item");
+    fireEvent.click(notificationItem);
+    expect(mockMarkAsRead).toHaveBeenCalledWith(mockNotification.id);
   });
 });

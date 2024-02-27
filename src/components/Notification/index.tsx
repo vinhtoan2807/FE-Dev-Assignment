@@ -1,16 +1,16 @@
 import React from "react";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { Notification } from "../../type";
-import useNotificationItemData from "../../hooks/useNotificationItemData";
+import useNotificationItemData from "./useNotificationItemData";
 import { GetContent } from "./GetContent";
 
 const Notifications: React.FC<{
   notification: Notification;
   markAsRead: (id: string) => void;
   avatarUrl: string | null;
-}> = ({ notification, markAsRead }) => {
-  const { avatarUrl, timeAgo, handleClick, getNotificationClassName } =
-    useNotificationItemData(notification, markAsRead);
+}> = ({ notification, markAsRead, avatarUrl }) => {
+  const { timeAgo, handleClick, getNotificationClassName } =
+    useNotificationItemData(notification, markAsRead, avatarUrl);
 
   return (
     <div

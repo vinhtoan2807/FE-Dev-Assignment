@@ -1,18 +1,27 @@
 import { useState, useEffect } from "react";
-import { getNotifications, markNotificationAsRead } from "../API";
-import { Notification } from "../type";
+import { getNotifications, markNotificationAsRead } from "../../API";
+import { Notification } from "../../type";
 
-const useNotificationData = () => {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+interface NotificationData {
+  notifications: Notification[];
+  totalRecords: number;
+}
+
+const useNotificationListData = () => {
+  const [notificationData, setNotificationData] = useState<NotificationData>({
+    notifications: [],
+    totalRecords: 0,
+  });
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
         const data = await getNotifications(10, currentPage);
-        setNotifications(data.data);
-        setTotalPages(Math.ceil(data.totalRecords / 10));
+        setNotificationData({
+          notifications: data.data,
+          totalRecords: data.totalRecords,
+        });
       } catch (error) {
         console.error("Error fetching notifications:", error);
       }
@@ -24,13 +33,14 @@ const useNotificationData = () => {
   const markAsRead = async (notificationId: string) => {
     try {
       await markNotificationAsRead(notificationId);
-      setNotifications((prevNotifications) =>
-        prevNotifications.map((notification) =>
+      setNotificationData((prevData) => ({
+        ...prevData,
+        notifications: prevData.notifications.map((notification) =>
           notification.id === notificationId
             ? { ...notification, isRead: true }
             : notification
-        )
-      );
+        ),
+      }));
     } catch (error) {
       console.error("Error marking notification as read:", error);
     }
@@ -44,12 +54,12 @@ const useNotificationData = () => {
   };
 
   return {
-    notifications,
-    totalPages,
+    notifications: notificationData.notifications,
+    totalRecords: notificationData.totalRecords,
     currentPage,
     markAsRead,
     handlePageChange,
   };
 };
 
-export default useNotificationData;
+export default useNotificationListData;
