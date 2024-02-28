@@ -2,8 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import ListNotifications from "./index";
 import { mockNotificationList } from "../../mocks/data/notification/notificationList.mocks";
 
-// Mock useNotificationListData hook
-jest.mock("../../hooks/useNotificationListData", () => ({
+jest.mock("./useNotificationListData", () => ({
   __esModule: true,
   default: jest.fn(() => ({
     notifications: mockNotificationList.data,

@@ -27,7 +27,7 @@ describe("Notifications Component", () => {
         avatarUrl={null}
       />
     );
-    const notificationItem = screen.getByTestId("notification-item");
+    const notificationItem = screen.getByText("Vĩnh Toàn");
     fireEvent.click(notificationItem);
     expect(mockMarkAsRead).toHaveBeenCalledWith(mockNotification.id);
   });

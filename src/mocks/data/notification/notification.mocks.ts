@@ -11,7 +11,7 @@ export const mockNotification: Notification = {
     data: {
       inviteUser: {
         id: "user345",
-        name: "User Name",
+        name: "Vĩnh Toàn",
         userCode: "123ndmsb",
       },
       project: {

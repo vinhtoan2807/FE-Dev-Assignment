@@ -20,7 +20,7 @@ const Notifications: React.FC<{
       onClick={handleClick}
     >
       <div className="notification-img">
-        {avatarUrl && <img src={avatarUrl} alt="" />}
+        {avatarUrl && <img src={avatarUrl} alt="notification-avatar" />}
       </div>
       <div className="notification-content">
         {notification.payload && <GetContent payload={notification.payload} />}
