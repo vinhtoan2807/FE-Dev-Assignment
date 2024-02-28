@@ -55,7 +55,7 @@ describe("ListNotifications component", () => {
       />
     );
     const paginationButton = screen.getByRole("button", {
-      name: "Go to page 2",
+      name: "2",
     });
     fireEvent.click(paginationButton);
     expect(paginationButton).toHaveAttribute("aria-current", "page");

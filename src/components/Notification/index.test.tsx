@@ -6,7 +6,8 @@ const mockMarkAsRead = jest.fn();
 
 describe("Notifications Component", () => {
   it("renders avatarUrl correctly", () => {
-    const avatarUrl = "https://example.com/avatar.jpg";
+    const avatarUrl =
+      "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png";
     render(
       <Notifications
         notification={mockNotification}
