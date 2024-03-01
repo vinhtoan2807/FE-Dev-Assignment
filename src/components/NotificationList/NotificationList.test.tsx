@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import ListNotifications from "./index";
+import ListNotifications from "./NotificationList";
 import { mockNotificationList } from "../../mocks/data/notification/notificationList.mocks";
 
 jest.mock("./useNotificationListData", () => ({

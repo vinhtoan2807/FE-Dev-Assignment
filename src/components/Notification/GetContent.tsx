@@ -9,7 +9,7 @@ const GetContent: React.FC<{ payload: Payload }> = ({ payload }) => {
   const CustomTypography = styled(Typography)`
     && {
       color: #333;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       display: inline;
     }
@@ -22,11 +22,11 @@ const GetContent: React.FC<{ payload: Payload }> = ({ payload }) => {
     ticketCode?: string
   ) => {
     return (
-      <div>
+      <>
         <CustomTypography>{user}</CustomTypography> <span>{t(action)}</span>{" "}
         {project && <CustomTypography>{project}</CustomTypography>}
         {ticketCode && <CustomTypography>{ticketCode}</CustomTypography>}
-      </div>
+      </>
     );
   };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { Notification } from "../../type";
-import useNotificationItemData from "./useNotificationItemData";
+import useNotificationItemData from "../../hook/useNotificationItemData";
 import { GetContent } from "./GetContent";
 
 const Notifications: React.FC<{

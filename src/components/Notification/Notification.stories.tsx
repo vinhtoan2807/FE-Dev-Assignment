@@ -1,4 +1,4 @@
-import Notifications from "./index";
+import Notifications from "./Notification";
 import { Meta, StoryObj } from "@storybook/react";
 import { mockNotification } from "../../mocks/data/notification/notification.mocks";
 

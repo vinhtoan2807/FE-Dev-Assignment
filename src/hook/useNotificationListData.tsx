@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getNotifications, markNotificationAsRead } from "../../API";
-import { Notification } from "../../type";
+import { getNotifications, markNotificationAsRead } from "../API";
+import { Notification } from "../type";
 
 interface NotificationData {
   notifications: Notification[];

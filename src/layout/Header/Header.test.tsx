@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from "@testing-library/react";
-import Header from "./index";
+import Header from "./Header";
 
 test("renders Header component with within", () => {
   render(<Header />);

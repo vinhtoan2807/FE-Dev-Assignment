@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import ListNotifications from "./index";
+import ListNotifications from "./NotificationList";
 import { mockNotificationList } from "../../mocks/data/notification/notificationList.mocks";
 
 const meta: Meta<typeof ListNotifications> = {

@@ -1,28 +1,35 @@
+import React, { Suspense } from "react";
 import "./assets/scss/styles.scss";
-import Header from "./components/Layout/Header";
-import ListNotifications from "./components/NotificationList/index";
-import useNotificationListData from "./components/NotificationList/useNotificationListData";
-
+import Header from "./layout/Header/Header";
+import Notification from "./pages/Notification/Notification";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 function App() {
-  const {
-    notifications,
-    totalRecords,
-    currentPage,
-    markAsRead,
-    handlePageChange,
-  } = useNotificationListData();
-
   return (
-    <div className="page-home">
-      <Header />
-      <ListNotifications
-        notifications={notifications}
-        totalRecords={totalRecords}
-        currentPage={currentPage}
-        markAsRead={markAsRead}
-        handlePageChange={handlePageChange}
-      />
-    </div>
+    <>
+      <Router>
+        <div className="page-home">
+          <Header />
+          <Routes>
+            <Route
+              path="/notification"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Notification />
+                </Suspense>
+              }
+            />
+            <Route
+              index
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Notification />
+                </Suspense>
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
 }
 

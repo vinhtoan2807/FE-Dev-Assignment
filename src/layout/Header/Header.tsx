@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { useTranslation } from "react-i18next";
-import "../../../locales/i18n";
+import "../../locales/i18n";
 
 type Language = "en" | "vn";
 const Header: React.FC = () => {

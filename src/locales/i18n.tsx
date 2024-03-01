@@ -11,6 +11,7 @@ const resources = {
       USER_ASSIGNED_TO_TICKET: "has assigned you to ticket",
       USER_OWN_TICKET: "has assigned you to owner of ticket",
       unknownNotificationType: "Unknown notification type",
+      time: "days ago",
       avatar: "https://mira.bootlab.io/static/img/flags/us.png",
     },
   },
@@ -23,6 +24,7 @@ const resources = {
       USER_ASSIGNED_TO_TICKET: "đã giao cho bạn công việc",
       USER_OWN_TICKET: "đã gắn bạn là người giao việc trong",
       unknownNotificationType: "Unknown notification type",
+      time: "ngày trước",
       avatar: "https://mira.bootlab.io/static/img/flags/vn.png",
     },
   },
@@ -30,8 +32,8 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: "vn",
-  fallbackLng: "vn",
+  lng: "en",
+  fallbackLng: "en",
   interpolation: {
     escapeValue: false,
   },

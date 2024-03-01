@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from "@testing-library/react";
-import Notifications from "./index";
+import Notifications from "./Notification";
 import { mockNotification } from "../../mocks/data/notification/notification.mocks";
 
 const mockMarkAsRead = jest.fn();
